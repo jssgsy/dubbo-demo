@@ -1,6 +1,6 @@
-package com.univ.providerimpl;
+package com.univ.service.impl;
 
-import com.univ.iprovider.DemoService;
+import com.univ.service.DemoService;
 
 /**
  * Univ

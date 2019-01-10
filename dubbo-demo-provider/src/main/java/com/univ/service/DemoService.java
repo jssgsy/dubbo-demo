@@ -1,4 +1,4 @@
-package com.univ.iprovider;
+package com.univ.service;
 
 /**
  * Created by Univ on 16/7/5.

@@ -1,6 +1,6 @@
 package com.univ;
 
-import com.univ.iprovider.DemoService;
+import com.univ.service.DemoService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**

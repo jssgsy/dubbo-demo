@@ -1,4 +1,4 @@
-package com.univ.server;
+package com.univ;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
