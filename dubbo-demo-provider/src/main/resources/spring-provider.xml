@@ -12,16 +12,18 @@
     这里没有将spring的配置文件和spring-provider.xml分开,实际开发中应该各司其职。
     -->
 
-
-    <bean id="demoService" class="com.univ.providerimpl.DemoServiceImpl"/>
-
+    <!-- 用来追踪依赖关系：provider's application name, used for tracing dependency relationship -->
     <dubbo:application name="dubbo-demo-provider"/>
 
+    <!--设置注册中心，除了zookeeper外还有multicast(使用此则不用安装zk)等-->
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
     <!-- 用dubbo协议在20880端口暴露服务 -->
     <dubbo:protocol name="dubbo" port="20880"/>
 
+    <!--定义service的实现类-->
+    <bean id="demoService" class="com.univ.providerimpl.DemoServiceImpl"/>
+    <!--将demoService暴露给外界-->
     <dubbo:service interface="com.univ.iprovider.DemoService" ref="demoService"/>
 
 
