@@ -1,8 +1,8 @@
 package com.univ;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import java.io.IOException;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Univ
