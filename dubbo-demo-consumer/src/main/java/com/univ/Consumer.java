@@ -1,9 +1,11 @@
 package com.univ;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.alibaba.dubbo.rpc.RpcException;
+import com.alibaba.dubbo.rpc.service.EchoService;
 import com.univ.dto.validation.ValidateDTO;
 import com.univ.service.DemoService;
 import com.univ.service.ValidateService;
@@ -17,17 +19,20 @@ import com.univ.service.ValidateService;
  * 服务消费者
  */
 public class Consumer {
+    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"classpath:spring-consumer.xml"});
+
+    @Before
+    public void setUp() throws Exception {
+        context.start();
+    }
 
     /**
      * 消费服务提供者
      */
-    public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"classpath:spring-consumer.xml"});
-        context.start();
-
+    @Test
+    public void consumerService() {
         DemoService demoService = (DemoService)context.getBean("demoService"); // 获取远程服务代理
         String hello = demoService.sayHello("world"); // 执行远程方法
-
         System.out.println(hello);
     }
 
@@ -36,9 +41,6 @@ public class Consumer {
      */
     @Test
     public void validate() {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"classpath:spring-consumer.xml"});
-        context.start();
-
         ValidateService validateService = (ValidateService)context.getBean("validateService"); // 获取远程服务代理
         try {
             // 基本类型的校验
@@ -55,7 +57,21 @@ public class Consumer {
         } catch (RpcException exception) {  // 注意，所以实现者的异常最终都会被包装成RpcException抛出
             System.out.println("没有通过验证：" + exception.getMessage());
         }
+    }
 
+    /**
+     * 查看某个service是否可用
+     *
+     * 利用所有的远程service都是EchoService的子类
+     */
+    @Test
+    public void echoService() {
+        ValidateService validateService = (ValidateService) context.getBean("validateService");
+        // 将其转变为EchoService类型即可
+        EchoService echoService = (EchoService) validateService;
 
+        // Echo test usability
+        String status = (String) echoService.$echo("OK");
+        System.out.println(status);
     }
 }
