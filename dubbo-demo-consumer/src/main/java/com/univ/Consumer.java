@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.alibaba.dubbo.rpc.RpcException;
 import com.alibaba.dubbo.rpc.service.EchoService;
+import com.univ.common.response.SingleResult;
 import com.univ.dto.validation.ValidateDTO;
 import com.univ.service.DemoService;
 import com.univ.service.ValidateService;
@@ -73,5 +74,25 @@ public class Consumer {
         // Echo test usability
         String status = (String) echoService.$echo("OK");
         System.out.println(status);
+    }
+
+    /**
+     * provider返回统一的数据
+     */
+    @Test
+    public void unifiedResult() {
+        DemoService demoService = (DemoService)context.getBean("demoService"); // 获取远程服务代理
+        SingleResult address = demoService.getAddress();
+        System.out.println(address);
+    }
+
+    /**
+     * provider抛出异常时返回统一的数据
+     */
+    @Test
+    public void handleException() {
+        DemoService demoService = (DemoService)context.getBean("demoService"); // 获取远程服务代理
+        SingleResult remoteResult = demoService.throwException();
+        System.out.println(remoteResult);
     }
 }

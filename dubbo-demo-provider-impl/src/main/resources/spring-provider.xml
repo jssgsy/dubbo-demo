@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                http://www.springframework.org/schema/beans/spring-beans.xsd
                http://code.alibabatech.com/schema/dubbo
-               http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+               http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
     <!--
@@ -29,6 +29,11 @@
     <bean id="validateService" class="com.univ.service.impl.ValidateServiceImpl"/>
     <!--经验证，服务提供者不用指定validation="true"-->
     <dubbo:service interface="com.univ.service.ValidateService" ref="validateService" validation="true"/>
+
+    <!--启用注解形式的aop(@Aspect，@Before)-->
+    <aop:aspectj-autoproxy />
+    <!--定义ResponseAspect-->
+    <bean id="responseAspect" class="com.univ.aop.response.ResponseAspect"/>
 
 
 </beans>
