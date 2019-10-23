@@ -30,6 +30,11 @@
     <!--经验证，服务提供者不用指定validation="true"-->
     <dubbo:service interface="com.univ.service.ValidateService" ref="validateService" validation="true"/>
 
+    <bean id="paramService" class="com.univ.service.impl.ParamServiceImpl"/>
+    <!--经验证，服务提供者不用指定validation="true"-->
+    <dubbo:service interface="com.univ.service.ParamService" ref="paramService" validation="true"/>
+
+
     <!--启用注解形式的aop(@Aspect，@Before)-->
     <aop:aspectj-autoproxy />
     <!--定义ResponseAspect-->
