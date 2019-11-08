@@ -31,7 +31,10 @@
     <dubbo:service interface="com.univ.service.ValidateService" ref="validateService" validation="true"/>
 
     <bean id="paramService" class="com.univ.service.impl.ParamServiceImpl"/>
-    <!--经验证，服务提供者不用指定validation="true"-->
+
+    <!--服务提供者指定validation="true"(当然也可以不启用，可以只在消费者启用)
+    实际使用中，消费者与服务提供者其一开启校验即可
+    -->
     <dubbo:service interface="com.univ.service.ParamService" ref="paramService" validation="true"/>
 
 
