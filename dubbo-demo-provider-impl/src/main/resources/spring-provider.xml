@@ -15,7 +15,10 @@
     <!-- 用来追踪依赖关系：provider's application name, used for tracing dependency relationship -->
     <dubbo:application name="dubbo-demo-provider"/>
 
-    <!--设置注册中心，除了zookeeper外还有multicast(使用此则不用安装zk)等，注意使用zk时需要先启动zk-->
+    <!--设置注册中心，除了zookeeper外还有multicast(使用此则不用安装zk)等，注意使用zk时需要先启动zk
+    注意使用multicast(multicast://224.5.6.7:1234?unicast=false)时，需要在服务端与消费端(每个方法维度)均配置VM option参数-Djava.net.preferIPv4Stack=true，
+    否则抛异常Can't assign requested address
+    -->
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
     <!-- 用dubbo协议在20880端口暴露服务 -->
@@ -26,16 +29,21 @@
     <!--将demoService暴露给外界-->
     <dubbo:service interface="com.univ.service.DemoService" ref="demoService"/>
 
+
     <bean id="validateService" class="com.univ.service.impl.ValidateServiceImpl"/>
     <!--经验证，服务提供者不用指定validation="true"-->
     <dubbo:service interface="com.univ.service.ValidateService" ref="validateService" validation="true"/>
 
-    <bean id="paramService" class="com.univ.service.impl.ParamServiceImpl"/>
 
+    <bean id="paramService" class="com.univ.service.impl.ParamServiceImpl"/>
     <!--服务提供者指定validation="true"(当然也可以不启用，可以只在消费者启用)
     实际使用中，消费者与服务提供者其一开启校验即可
     -->
     <dubbo:service interface="com.univ.service.ParamService" ref="paramService" validation="true"/>
+
+
+    <bean id="exceptionService" class="com.univ.service.impl.ExceptionServiceImpl"/>
+    <dubbo:service interface="com.univ.service.ExceptionService" ref="exceptionService"/>
 
 
     <!--启用注解形式的aop(@Aspect，@Before)-->

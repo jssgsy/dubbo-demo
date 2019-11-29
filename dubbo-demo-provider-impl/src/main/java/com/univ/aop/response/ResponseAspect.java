@@ -21,6 +21,16 @@ public class ResponseAspect {
      * com.univ.service包及其所有子包下的所有方法当作切点
      */
     @Pointcut("execution(* com.univ.service..*.*(..))")
+    public void needBeIntercepted(){
+
+    }
+
+    @Pointcut("!execution(* com.univ.service.ExceptionService.throwException())")
+    public void needNotBeIntercepted(){
+
+    }
+
+    @Pointcut("needBeIntercepted() && needNotBeIntercepted()")
     public void triggerException() {
 
     }

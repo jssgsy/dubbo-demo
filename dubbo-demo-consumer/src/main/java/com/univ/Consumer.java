@@ -9,6 +9,7 @@ import com.alibaba.dubbo.rpc.service.EchoService;
 import com.univ.common.response.SingleResult;
 import com.univ.dto.validation.ValidateDTO;
 import com.univ.service.DemoService;
+import com.univ.service.ExceptionService;
 import com.univ.service.ValidateService;
 
 /**
@@ -84,6 +85,21 @@ public class Consumer {
         DemoService demoService = (DemoService)context.getBean("demoService"); // 获取远程服务代理
         SingleResult address = demoService.getAddress();
         System.out.println(address);
+    }
+
+    /**
+     * 注意，当服务端抛出异常时，
+     * 1. 如果调用方不进行捕获，则调用方调用链断掉(异常层层往上传递)；
+     * 2. 如果调用方进行了捕获，则捕获到的message是整个服务端的异常堆栈，而不是服务端所抛异常的message，重要！
+     */
+    @Test
+    public void originalException() {
+        ExceptionService exceptionService = (ExceptionService) context.getBean("exceptionService");
+        try {
+            exceptionService.throwException();
+        } catch (Exception ex) {
+            System.out.println("dubbo服务端抛出异常的message为：" + ex.getMessage());
+        }
     }
 
     /**

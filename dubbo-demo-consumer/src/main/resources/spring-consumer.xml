@@ -21,4 +21,6 @@
 
     <dubbo:reference interface="com.univ.service.ParamService" id="paramService" />
 
+    <dubbo:reference interface="com.univ.service.ExceptionService" id="exceptionService" />
+
 </beans>
