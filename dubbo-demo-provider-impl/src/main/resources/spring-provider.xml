@@ -31,7 +31,7 @@
 
 
     <bean id="validateService" class="com.univ.service.impl.ValidateServiceImpl"/>
-    <!--经验证，服务提供者不用指定validation="true"-->
+    <!--经验证，服务提供者不用指定validation="true", 但服务端和消费端必须开启一个，否则不验证-->
     <dubbo:service interface="com.univ.service.ValidateService" ref="validateService" validation="true"/>
 
 

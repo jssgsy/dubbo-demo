@@ -14,7 +14,7 @@ public interface ValidateService {
     /**
      * 将限制加在对象类型上
      *
-     * 注意，这里不用加@Valid注解，直接将限制加在ValidateDTO类中的字段中即可
+     * 注意，这里不用加@Valid注解(@Valid的作用是用来实际级联字段的验证的)，直接将限制加在ValidateDTO类中的字段中即可
      * @param validateDTO
      * @return
      */

@@ -16,7 +16,7 @@
     <!-- 引用远程服务(为远程service创建代理，之后就可以像调用本地服务一样了)-->
     <dubbo:reference interface="com.univ.service.DemoService" id="demoService" />
 
-    <!--消费端启用校验-->
+    <!--消费端启用校验，服务端和消费端必须开启一个，否则不验证-->
     <dubbo:reference interface="com.univ.service.ValidateService" id="validateService" validation="true"/>
 
     <dubbo:reference interface="com.univ.service.ParamService" id="paramService" />

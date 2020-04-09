@@ -2,11 +2,10 @@ package com.univ.dto.validation;
 
 import java.io.Serializable;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
-
-import com.sun.istack.internal.NotNull;
 
 /**
  * @author univ
@@ -24,11 +23,11 @@ public class ValidateDTO implements Serializable{
     @NotBlank(message = "name不允许为空")
     private String name;
 
-    @javax.validation.constraints.NotNull
+    @NotNull
     @Email(message = "email字段不符合邮件格式")
     private String email;
 
-    @javax.validation.constraints.NotNull
+    @NotNull
     @Min(value = 10, message = "age不能小于10")
     private Integer age;
 

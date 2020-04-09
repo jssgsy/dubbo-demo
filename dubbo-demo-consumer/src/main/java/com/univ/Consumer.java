@@ -40,6 +40,7 @@ public class Consumer {
 
     /**
      * dubbo-参数校验
+     * , 但服务端和消费端必须指定一个validation="true"，否则不验证。
      */
     @Test
     public void validate() {
