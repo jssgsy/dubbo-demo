@@ -90,7 +90,7 @@ public class Consumer {
     /**
      * 注意，当服务端抛出异常时，
      * 1. 如果调用方不进行捕获，则调用方调用链断掉(异常层层往上传递)；
-     * 2. 如果调用方进行了捕获，则捕获到的message是整个服务端的异常堆栈，而不是服务端所抛异常的message，重要！
+     * 2. 如果调用方进行了捕获，则捕获到的message是可能整个服务端的异常堆栈，而不是服务端所抛异常的message！(视服务端的处理而定)
      */
     @Test
     public void originalException() {
