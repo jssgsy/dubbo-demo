@@ -1,6 +1,7 @@
 package com.univ.service;
 
 import com.univ.common.exception.UnivException;
+import com.univ.common.response.SingleResult;
 
 /**
  * @author univ
@@ -10,10 +11,17 @@ import com.univ.common.exception.UnivException;
 public interface ExceptionService {
 
     /**
-     * 注意，如果这里声明了抛出异常，则当异常抛出时，调用方catch住的异常的message为这里抛出异常时设置的message，
+     * 服务器端抛出异常，如果这里声明了抛出异常，则当异常抛出时，则抛出的是代码中抛出的自定义异常
      * 而不是整个异常堆栈信息
      * @return
      * @throws UnivException
      */
-    boolean throwException() throws UnivException;
+    SingleResult<String> throwException() throws UnivException;
+
+    /**
+     * 服务器端抛出异常，如果不作任何处理，则会将自定义的异常作为message包装成RuntimeException抛出。
+     * (抛出的是RuntimeException而不是代码中抛出的自定义异常)
+     * @return
+     */
+    SingleResult<String> originalException();
 }

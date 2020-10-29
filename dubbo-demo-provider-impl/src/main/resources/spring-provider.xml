@@ -42,7 +42,7 @@
     <dubbo:service interface="com.univ.service.ParamService" ref="paramService" validation="true"/>
 
 
-    <bean id="exceptionService" class="com.univ.service.impl.ExceptionServiceImpl"/>
+    <bean id="exceptionService" class="com.univ.service.exception.ExceptionServiceImpl"/>
     <dubbo:service interface="com.univ.service.ExceptionService" ref="exceptionService"/>
 
 

@@ -16,7 +16,8 @@ public class ResultUtil {
     }
 
     public static SingleResult<String> wrapException(Throwable ex) {
-        SingleResult<String> singleResult = new SingleResult<>(ex.getMessage());
+        SingleResult<String> singleResult = new SingleResult<>();
+        singleResult.setMessage(ex.getMessage());
         singleResult.setSuccess(false);
         return singleResult;
     }

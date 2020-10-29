@@ -89,18 +89,28 @@ public class Consumer {
     }
 
     /**
-     * 注意，当服务端抛出异常时，
-     * 1. 如果调用方不进行捕获，则调用方调用链断掉(异常层层往上传递)；
-     * 2. 如果调用方进行了捕获，则捕获到的message是可能整个服务端的异常堆栈，而不是服务端所抛异常的message！(视服务端的处理而定)
+     * 服务器端抛出异常时：
+     * 如果不作任何处理(不捕获，不在接口处声明throws异常，异常类和接口类不在同一包下)，则调用方调用链断掉(异常会层层往上传递)，
+     * 且会将代码中抛出的异常整个作为message包装成RuntimeException抛出
      */
     @Test
     public void originalException() {
         ExceptionService exceptionService = (ExceptionService) context.getBean("exceptionService");
-        try {
-            exceptionService.throwException();
-        } catch (Exception ex) {
-            System.out.println("dubbo服务端抛出异常的message为：" + ex.getMessage());
-        }
+        // 抛出异常
+        SingleResult<String> stringSingleResult = exceptionService.originalException();
+
+        // 注：如果此方法被aop（ResponseAspect）拦截了，则下面还是会执行的
+        System.out.println("这行及以下代码不会执行");
+        System.out.println("异常message: " + stringSingleResult.getMessage());
+    }
+
+    /**
+     * 如果服务端dubbo接口声明了throws异常，则抛出的就是代码中自定义的异常
+     */
+    @Test
+    public void originalExceptionV2() {
+        ExceptionService exceptionService = (ExceptionService) context.getBean("exceptionService");
+        exceptionService.throwException();
     }
 
     /**
