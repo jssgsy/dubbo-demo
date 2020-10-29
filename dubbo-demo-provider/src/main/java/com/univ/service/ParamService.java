@@ -58,7 +58,7 @@ public interface ParamService {
     void listObj(List<UnivParam> list);
 
     /**
-     * invoke multiIntAndList(1, "name", [{"id":1, "name":"aaa"}, {"id":2, "name":"bbb"}])
+     * invoke multiIntAndList(12, "zhangsan", [1,2,3])
      * @param i
      * @param name
      * @param list
@@ -73,6 +73,7 @@ public interface ParamService {
 
     /**
      * invoke mapString({"age":12, "name":"aaa"})
+     * 这里12用"12"也是可以的
      * @param map map当作对象用即可
      */
     void mapString(Map<String, String> map);
