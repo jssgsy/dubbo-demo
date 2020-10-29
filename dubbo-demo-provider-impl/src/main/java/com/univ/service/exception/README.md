@@ -11,4 +11,4 @@ dubbo异常处理最佳实践：
         2. 使用aop介入统一处理Exception（在dubbo的ExceptionFilter之前，相当于永远不会有异常抛出）;
         
 # 流程图
-![dubbo异常处理流程](https://github.com/jssgsy/dubbo/raw/master/dubbo-demo/dubbo-demo-provider-impl/src/main/java/com/univ/service/exception/dubbo异常处理流程.png
+![dubbo异常处理流程](https://github.com/jssgsy/dubbo-demo/raw/master/dubbo-demo-provider-impl/src/main/java/com/univ/service/exception/dubbo异常处理流程.png
