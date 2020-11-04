@@ -122,4 +122,10 @@ public class Consumer {
         SingleResult remoteResult = demoService.throwException();
         System.out.println(remoteResult);
     }
+
+    @Test
+    public void customerFilter() {
+        // 任意调用一个方法即可
+        echoService();
+    }
 }
