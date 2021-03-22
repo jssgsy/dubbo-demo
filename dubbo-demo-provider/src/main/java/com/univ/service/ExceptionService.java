@@ -24,4 +24,10 @@ public interface ExceptionService {
      * @return
      */
     SingleResult<String> originalException();
+
+    /**
+     * 抛出dubbo定义的异常，则直接抛出，不用包装成RuntimeException
+     * @return
+     */
+    SingleResult<String> throwDubboException();
 }

@@ -1,5 +1,6 @@
 package com.univ.service.exception;
 
+import com.alibaba.dubbo.rpc.RpcException;
 import com.univ.common.exception.UnivException;
 import com.univ.common.response.SingleResult;
 import com.univ.service.ExceptionService;
@@ -23,5 +24,10 @@ public class ExceptionServiceImpl implements ExceptionService {
     @Override
     public SingleResult<String> originalException() {
         throw new UnivException("originalException-抛自定义异常了，没有任何处理的异常则层层上传导致调用中断");
+    }
+
+    @Override
+    public SingleResult<String> throwDubboException() {
+        throw new RpcException("这是dubbo的异常");
     }
 }

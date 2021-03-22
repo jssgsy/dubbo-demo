@@ -114,6 +114,15 @@ public class Consumer {
     }
 
     /**
+     * 抛出的是dubbo异常，则直接抛出(不用包装成RuntimeException)
+     */
+    @Test
+    public void throwDubboException() {
+        ExceptionService exceptionService = (ExceptionService) context.getBean("exceptionService");
+        exceptionService.throwDubboException();
+    }
+
+    /**
      * provider抛出异常时返回统一的数据
      */
     @Test
