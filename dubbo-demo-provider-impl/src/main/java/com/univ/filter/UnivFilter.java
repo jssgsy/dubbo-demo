@@ -12,7 +12,7 @@ import com.alibaba.dubbo.rpc.RpcException;
  * @date 2020/11/3 5:35 下午
  * @description 自定义filter
  */
-@Activate(group = {"provider"}, order = -10000000)   // 使此Filter自动激活，并指定顺序为前面
+@Activate(group = {"provider"}, order = -10000000)   // 使此Filter自动激活，并指定顺序为前面，order值越小，越早被执行
 public class UnivFilter implements Filter {
 
     @Override
