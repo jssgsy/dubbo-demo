@@ -1,5 +1,7 @@
 package com.univ;
 
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -10,6 +12,7 @@ import com.univ.common.response.SingleResult;
 import com.univ.dto.validation.ValidateDTO;
 import com.univ.service.DemoService;
 import com.univ.service.ExceptionService;
+import com.univ.service.RpcContextService;
 import com.univ.service.ValidateService;
 
 /**
@@ -136,5 +139,12 @@ public class Consumer {
     public void customerFilter() {
         // 任意调用一个方法即可
         echoService();
+    }
+
+    @Test
+    public void testRpcContext() {
+        RpcContextService rpcContextService = (RpcContextService)context.getBean("rpcContextService"); // 获取远程服务代理
+        Map<String, String> attachment = rpcContextService.getAttachment();
+        System.out.println("请查看服务端获取的attachment值");
     }
 }

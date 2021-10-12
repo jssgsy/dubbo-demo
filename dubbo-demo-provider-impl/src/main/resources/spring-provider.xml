@@ -45,6 +45,8 @@
     <bean id="exceptionService" class="com.univ.service.exception.ExceptionServiceImpl"/>
     <dubbo:service interface="com.univ.service.ExceptionService" ref="exceptionService"/>
 
+    <bean id="rpcContextService" class="com.univ.service.impl.RpcContextServiceImpl"/>
+    <dubbo:service interface="com.univ.service.RpcContextService" ref="rpcContextService"/>
 
     <!--启用注解形式的aop(@Aspect，@Before)-->
     <aop:aspectj-autoproxy />

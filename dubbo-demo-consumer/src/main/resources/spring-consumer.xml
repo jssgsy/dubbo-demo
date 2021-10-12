@@ -23,4 +23,6 @@
 
     <dubbo:reference interface="com.univ.service.ExceptionService" id="exceptionService" />
 
+    <dubbo:reference interface="com.univ.service.RpcContextService" id="rpcContextService" />
+
 </beans>
