@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
-            <version>2.5.3</version>
+            <version>2.6.9</version>
             <!--dubbo自带的spring版本很低，要自己更新掉-->
             <exclusions>
                 <exclusion>
